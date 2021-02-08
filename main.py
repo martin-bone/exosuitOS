@@ -34,8 +34,24 @@ def FMain():
 
 def FVoiceRecognition():
 	'''Recognizes commands'''
-	pass
+	import speech_recognition as sr
 
+	vr = sr.Recognizer()
+	vmic = sr.Microphone()
+
+	with vmic as source:
+		print('Listening:')
+		vaudio = vr.listen(source)
+
+	vdata = ''
+	try:
+		vdata = vr.recognize_google(vaudio)
+		print(vdata)
+	except sr.UnknownValueError:
+		print("Not recognizable!")
+	except sr.RequestError:
+		print('Request Error!')
+	return vdata
 
 
 class CCommand():
