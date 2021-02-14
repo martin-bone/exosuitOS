@@ -11,6 +11,7 @@
 #problem only appears in Visual Studio Python Interactive
 #python.exe works fine, only 3.7
 
+import speech_recognition as sr
 
 def FMain():
 	'''Main loop'''
@@ -24,7 +25,7 @@ def FMain():
 				}
 
 	while True:
-		VCommand = input('Command to be executed:')
+		VCommand = FVoiceRecognition()
 		if VCommand == 'quit':
 			break
 		DCommands.get(VCommand, lambda : print('This command does not exist'))()
@@ -34,7 +35,6 @@ def FMain():
 
 def FVoiceRecognition():
 	'''Recognizes commands'''
-	import speech_recognition as sr
 
 	vr = sr.Recognizer()
 	vmic = sr.Microphone()
